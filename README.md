@@ -250,13 +250,13 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 Baixar a imagem:
 
 ```bash
-sudo docker pull rafabezerra/oracle_geoguard:latest
+sudo docker pull gvenzl/oracle-xe:latest
 ```
 
 Executar o container:
 
 ```bash
-sudo docker run -d -p 1521:1521 rafabezerra/oracle_geoguard
+sudo docker run -d -p 1521:1521 gvenzl/oracle-xe
 ```
 
 ### ✅ Passo 7 - Executar o container do projeto
