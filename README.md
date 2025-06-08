@@ -171,6 +171,9 @@ Todos os repositórios estão disponiveis em nossa organização do github:
 - 🎥 **Apresentação da Solução GeoGuard:**  
   [Link do vídeo](https://youtu.be/YNFErko31fM?si=hFlQK_vrn-SA1UdO)
 
+- 🎥 **Apresentação da Solução da materia de cloud:**  
+  [Link do vídeo](https://youtu.be/59UMdjg8bh4)
+
 
 ## 🚀 Passo a Passo de Execução por cloud
 
