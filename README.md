@@ -245,33 +245,51 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 ---
 
-### ✅ Passo 7 - Executar o container do banco de dados
+### ✅ Passo 7 - Criar uma network para correlação entre o bancod de dados oracle e aplicação java
+
+```bash
+sudo docker network create geoguard-net
+```
+
+
+### ✅ Passo 8 - Executar o container do banco de dados
 
 Baixar a imagem:
 
 ```bash
-sudo docker pull gvenzl/oracle-xe:latest
+sudo docker run -d \
+  --name oracle-xe \
+  --network geoguard-net \
+  -e ORACLE_PASSWORD=oracle \
+  -p 1521:1521 \
+  gvenzl/oracle-xe:21-slim
 ```
+---
 
-Executar o container:
-
-```bash
-sudo docker run -d -p 1521:1521 gvenzl/oracle-xe
-```
-
-### ✅ Passo 7 - Executar o container do projeto
+### ✅ Passo 9 - Executar o container de java
 
 Baixar a imagem:
 
 ```bash
-sudo docker pull rafabezerra/geoguard_java:latest
+sudo docker run --rm -d \
+  --name geoguard-app \
+  --network geoguard-net \
+  -e SPRING_DATASOURCE_URL=jdbc:oracle:thin:@//oracle-xe:1521/XEPDB1 \
+  -e SPRING_DATASOURCE_USERNAME=system \
+  -e SPRING_DATASOURCE_PASSWORD=oracle \
+  -p 8080:8080 \
+rafabezerra/geoguard-app
 ```
+---
 
-Executar o container:
+### ✅ Passo 10 - Excluir VM
+
+Baixar a imagem:
 
 ```bash
-sudo docker run -d -p 8080:8080 rafabezerra/geoguard_java
+az group delete --name rg-vm-global  --yes
 ```
+---
 
 ## 👨‍💻 Autores
 -  Guilherme Alves Pedroso - RM555357
